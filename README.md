@@ -7,7 +7,7 @@ Trabalho de Conclusão do curso de Arquitetura de Software Distribuído
 
 A POC deverá validar o protótipo arquitetural. Serão avaliados os seguintes atributos de qualidade: segurança, desempenho e interoperabilidade.
 
-#Divisão do projeto
+###Divisão do projeto###
 
 A solução é composta de 3 aplicações:
 
@@ -17,7 +17,7 @@ A solução é composta de 3 aplicações:
 
 **Obs:** Apesar de ser mencionado o módulo de frontend no projeto arquitetural, o módulo não foi desenvolvido por entender que para a validação não seria muito relevante.
 
-#Tecnologias envolvidas na solução
+###Tecnologias envolvidas na solução###
  
 Toda a solução será desenvolvida na linguagem JAVA=, com a utilização das plataformas Spring e Netflix OSS.
 As seguintes tecnologias foram utilizadas:
