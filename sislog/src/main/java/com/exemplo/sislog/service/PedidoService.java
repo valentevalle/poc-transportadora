@@ -34,8 +34,6 @@ public class PedidoService {
 
 	@Autowired
 	private EventoService eventoService;
-	@Value("${activiti.process.name}")
-	private String PROCESS_NAME;
 
 	public void solicitar(Pedido pedido) {
 		freteService.calcularFrete(pedido);
