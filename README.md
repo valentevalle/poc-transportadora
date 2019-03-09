@@ -7,6 +7,8 @@ Trabalho de Conclusão do curso de Arquitetura de Software Distribuído
 
 A POC deverá validar o protótipo arquitetural. Serão avaliados os seguintes atributos de qualidade: segurança, desempenho e interoperabilidade.
 
+	**Vídeo:** https://youtu.be/y8JRZVs44KM
+
 ### Divisão do projeto ###
 
 A solução é composta de 3 aplicações:
