@@ -34,17 +34,20 @@ public class Pedido {
 //	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional=false)
 //	@JoinColumn(name ="empresa_coleta_cnpj" )
 	@ManyToOne
-	@JoinColumn(name = "emprego_coleta_cnpj")
+	@JoinColumn(name = "empresa_coleta_cnpj")
 	private Empresa empresaColeta;
 //	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY,optional=false)
 //	@JoinColumn(name ="empresa_entrega_cnpj" )
 	@ManyToOne
-	@JoinColumn(name = "emprego_entrega_cnpj")
+	@JoinColumn(name = "empresa_entrega_cnpj")
 	private Empresa empresaEntrega;
 	private Double total;
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional=true)
+//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JoinColumn(name = "pedido_id")
+	
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER, optional=true)
 	private Carga carga;
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY,optional=true)
+	@OneToOne(optional=true)
 	private TransferenciaCarga transferenciaCarga;
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional=true)
 	private Cte cte;
@@ -53,8 +56,16 @@ public class Pedido {
 	private ModalTransporte modalTransporte;
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional=true)
 	private Expedicao expedicao;
-	@OneToMany(mappedBy="pedido", orphanRemoval=true, cascade=CascadeType.ALL)
+	@OneToMany(orphanRemoval=true, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name = "pedido_id")
 	private List<Evento> eventos;
+	
+	public Carga getCarga() {
+		return carga;
+	}
+	public void setCarga(Carga carga) {
+		this.carga = carga;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -70,9 +81,7 @@ public class Pedido {
 	public Double getTotal() {
 		return total;
 	}
-	public Carga getCarga() {
-		return carga;
-	}
+	
 	public TransferenciaCarga getTransferenciaCarga() {
 		return transferenciaCarga;
 	}
@@ -100,9 +109,7 @@ public class Pedido {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
-	public void setCarga(Carga carga) {
-		this.carga = carga;
-	}
+	
 	public void setTransferenciaCarga(TransferenciaCarga transferenciaCarga) {
 		this.transferenciaCarga = transferenciaCarga;
 	}
@@ -121,5 +128,6 @@ public class Pedido {
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
 	}
+	
 	
 }

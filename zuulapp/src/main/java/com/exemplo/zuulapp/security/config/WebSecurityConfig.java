@@ -74,6 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	            .authorizeRequests()
 	            .antMatchers("/sislog/home").permitAll()
 	            .antMatchers("/sislog/say").permitAll()
+	            .antMatchers("/sislog/pedido/consultar").permitAll()
 	            .antMatchers("/sislog/pedido/solicitar").hasRole("PARCEIRA")
 	            .antMatchers("/sislog/frete/incluir").hasRole("ADMIN")
 				.antMatchers("/auth/**").permitAll()

@@ -1,11 +1,12 @@
 package com.exemplo.sislog.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,20 +33,24 @@ public class PedidoService {
 	@Autowired
 	private EmpresaService empresaService;
 
-	@Autowired
-	private EventoService eventoService;
 
 	public void solicitar(Pedido pedido) {
 		freteService.calcularFrete(pedido);
 		pedido.setEmpresaColeta(empresaService.incluir(pedido.getEmpresaColeta()));
 		pedido.setEmpresaEntrega(empresaService.incluir(pedido.getEmpresaEntrega()));
+		
 		Evento eventoAbertura = new Evento();
-		pedidoRepository.save(pedido);
-		eventoAbertura.setPedido(pedido);
 		eventoAbertura.setTipoEvento(TipoEvento.SOLICITADO);
 		eventoAbertura.setData(new Date());
 		eventoAbertura.setDescricao("Pedido recebido. Aguardando para ser expedido");
-		eventoService.registrarEvento(eventoAbertura);
+		List <Evento> listaEvento = new ArrayList<Evento>();
+		listaEvento.add(eventoAbertura);
+		pedido.setEventos(listaEvento);
+		pedidoRepository.save(pedido);
+	}
+	public Pedido consultar(String cnpjEmpresaEntrega, String numeroNotaFiscal, Date dataEmissao){
+		
+		return pedidoRepository.consultarSituacaoServico(cnpjEmpresaEntrega, numeroNotaFiscal, dataEmissao);
 	}
 	
 }

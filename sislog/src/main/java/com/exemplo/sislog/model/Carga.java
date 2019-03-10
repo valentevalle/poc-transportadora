@@ -20,17 +20,32 @@ public class Carga {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "carga_seq")
 	@SequenceGenerator(name = "carga_seq", sequenceName = "carga_seq", allocationSize = 1)
 	private Long id;
+//	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional=true)
 	@Embedded
 	private NotaFiscal notaFiscal;
+	
 	private String nomeProduto;
 	private Double peso;
 	private Long volumes;
 	private Long altura;
 	private Long largura;
 	private Long comprimento;
+//	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+//	@JoinColumn(name="pedido_id")
+//	private Pedido pedido;
+	
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoCarga tipoCarga;
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 	public String getNomeProduto() {
 		return nomeProduto;
 	}

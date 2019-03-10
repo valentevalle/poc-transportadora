@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TBL_EVENTO")
@@ -27,10 +29,11 @@ public class Evento {
 	private String responsavel;
 	@Enumerated(EnumType.STRING)
 	private TipoEvento tipoEvento;
+	@Temporal(TemporalType.DATE)
 	private Date data;
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="pedido_id")
-	private Pedido pedido;
+//	@ManyToOne(fetch=FetchType.LAZY)
+//	@JoinColumn(name="pedido_id")
+//	private Pedido pedido;
 	public Long getId() {
 		return id;
 	}
@@ -55,12 +58,12 @@ public class Evento {
 	public void setTipoEvento(TipoEvento tipoEvento) {
 		this.tipoEvento = tipoEvento;
 	}
-	public Pedido getPedido() {
-		return pedido;
-	}
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
-	}
+//	public Pedido getPedido() {
+//		return pedido;
+//	}
+//	public void setPedido(Pedido pedido) {
+//		this.pedido = pedido;
+//	}
 	public Date getData() {
 		return data;
 	}
